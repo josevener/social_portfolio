@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: `${profile.name} — ${profile.headline}`,
-  description: "Portfolio showcasing projects and experience of Jack Zentrix, a full-stack developer specializing in Laravel, React, and Node.js.",
+  description: "Portfolio showcasing projects and experience of Jose Vener Rafael, a full-stack developer specializing in Laravel, React, and Node.js.",
 };
 
 export default function RootLayout({
