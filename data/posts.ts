@@ -13,6 +13,14 @@ export const posts: Post[] = [
   {
     id: 2,
     type: "experience",
+    period: "February — May 2025",
+    title: "Web Developer",
+    description: "Internship",
+    tech: ["Laravel API", "Next.js", "MySQL", "Postman"],
+  },
+  {
+    id: 3,
+    type: "experience",
     period: "2024 — Present",
     title: "Full-Stack Developer",
     description: "Freelance",
@@ -22,7 +30,7 @@ export const posts: Post[] = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     type: "experience",
     period: "June 2025 – Present",
     title: "Software Developer",
@@ -32,16 +40,24 @@ export const posts: Post[] = [
 
   // PROJECTS
   {
-    id: 4,
+    id: 5,
     type: "project",
-    slug: "secure-password-generator",
-    title: "Secure Password Generator Utility",
-    description:
-      "Reusable async utility that generates secure passwords and safely updates user records.",
-    tech: ["Node.js", "Security", "Async/Await"],
+    slug: "smart-hydroponics-with-realtime-monitoring-system",
+    title: "Smart Hydroponics with Realtime Monitoring System",
+    description: `A smart hydroponics system featuring real-time monitoring
+     of environmental conditions such as water level, temperature, humidity, 
+     and pH levels. Includes a web-based dashboard for visualizing plant growth data, 
+     user and role management secured with Role-Based Access Control (RBAC), 
+     and data-driven insights to support efficient and optimized plant cultivation.`,
+    tech: [
+      "PHP", "HTML5", "Bootstrap 5", "CSS", "MySQL", 
+      "Arduino Uno R3", "ESP8266 NodeMCU", "Total Dissolved Solids (TDS) Sensor",
+      "pH Sensor", "Temperature Sensor (DHT11)", "Water Level Sensor", 
+      "DS18B20 Water Temperature Sensor", "Water and Nutrient Pumps"
+    ],
   },
   {
-    id: 5,
+    id: 6,
     type: "project",
     slug: "excel-export-module",
     title: "Excel Export Module for Admin Reports",
@@ -50,7 +66,7 @@ export const posts: Post[] = [
     tech: ["Laravel", "PHP", "Laravel Excel"],
   },
   {
-    id: 6,
+    id: 7,
     type: "project",
     slug: "role-based-admin-panel",
     title: "Role-Based Admin Panel",
@@ -58,10 +74,18 @@ export const posts: Post[] = [
       "Implemented RBAC without introducing redundant user types.",
     tech: ["Laravel", "PostgreSQL", "RBAC"],
   },
+  {
+    id: 8,
+    type: "project",
+    slug: "secure-password-generator",
+    title: "Secure Password Generator Utility",
+    description: "Reusable async utility that generates secure passwords and safely updates user records.",
+    tech: ["Node.js", "Security", "Async/Await"],
+  },
 
   // POSTS
   {
-    id: 7,
+    id: 9,
     type: "post",
     title: "Promise.all vs Sequential await",
     description:
@@ -69,7 +93,7 @@ export const posts: Post[] = [
     tech: ["JavaScript", "Async", "Performance"],
   },
   {
-    id: 8,
+    id: 10,
     type: "post",
     title: "Why Declaring Variables Matters in Node.js",
     description:
