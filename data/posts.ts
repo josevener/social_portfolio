@@ -5,22 +5,6 @@ export const posts: Post[] = [
   {
     id: 1,
     type: "experience",
-    period: "July 2025",
-    title: "Graduate – BS Information Technology",
-    description: "Colegio de Sta. Teresa de Avila",
-    tech: [],
-  },
-  {
-    id: 2,
-    type: "experience",
-    period: "February — May 2025",
-    title: "Web Developer",
-    description: "Internship",
-    tech: ["Laravel API", "Next.js", "MySQL", "Postman"],
-  },
-  {
-    id: 3,
-    type: "experience",
     period: "2024 — Present",
     title: "Full-Stack Developer",
     description: "Freelance",
@@ -28,6 +12,22 @@ export const posts: Post[] = [
       "Node.js", "Laravel", "PHP", "React.js", "Next.js", "C#.NET", "Visual Basic.NET", "PostgreSQL", "MySQL",
       "Flutter", "Android Development", "IoT Development", "Arduino Uno R3"
     ],
+  },
+  {
+    id: 2,
+    type: "experience",
+    period: "July 2025",
+    title: "Graduate – BS Information Technology",
+    description: "Colegio de Sta. Teresa de Avila",
+    tech: [],
+  },
+  {
+    id: 3,
+    type: "experience",
+    period: "February — May 2025",
+    title: "Web Developer",
+    description: "BFD Corporation | Internship",
+    tech: ["Laravel API", "Next.js", "MySQL", "Postman"],
   },
   {
     id: 4,
