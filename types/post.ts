@@ -8,14 +8,28 @@ export type BasePost = {
   tech: string[];
 };
 
+export type BlogPost = BasePost & {
+  type: "post";
+  slug: string;
+  images?: {
+    src: string;
+    alt: string;
+  }[];
+};
+
 export type ProjectPost = BasePost & {
   type: "project";
   slug: string;
+  screenshots?: {
+    src: string;
+    alt: string;
+  }[];
 };
 
 export type ExperiencePost = BasePost & {
   type: "experience";
   period: string;
+  responsibilities?: string[];
 };
 
-export type Post = BasePost | ProjectPost | ExperiencePost;
+export type Post = BlogPost | ProjectPost | ExperiencePost;

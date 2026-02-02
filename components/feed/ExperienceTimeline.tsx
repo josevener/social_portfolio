@@ -1,12 +1,11 @@
-import { posts } from "@/data/posts";
 import { ExperiencePost } from "@/types/post";
+import TechBadgeOverflow from "../common/TechBadgeOverflow";
 
-export default function ExperienceTimeline() {
-  const experiences = posts
-    .filter((p): p is ExperiencePost => p.type === "experience")
-    // newest first (optional but recommended)
-    .sort((a, b) => b.id - a.id);
+type Props = {
+  experiences: ExperiencePost[];
+};
 
+export default function ExperienceTimeline({ experiences }: Props) {
   return (
     <div className="relative">
       <ul className="space-y-10">
@@ -21,7 +20,7 @@ export default function ExperienceTimeline() {
             <span className="absolute left-2 top-2 h-2.5 w-2.5 rounded-full bg-primary" />
 
             {/* Content */}
-            <div className="space-y-1">
+            <div className="space-y-2">
               {/* Title + Date */}
               <div className="flex justify-between gap-4">
                 <h3 className="font-medium leading-tight">
@@ -32,26 +31,24 @@ export default function ExperienceTimeline() {
                 </span>
               </div>
 
-              {/* Organization / Description */}
+              {/* Org / Context */}
               {exp.description && (
                 <p className="text-sm text-muted-foreground">
                   {exp.description}
                 </p>
               )}
 
-              {/* Tech (optional) */}
-              {exp.tech.length > 0 && (
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {exp.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="text-xs bg-muted px-2 py-0.5 rounded"
-                    >
-                      {t}
-                    </span>
+              {/* What I did */}
+              {exp.responsibilities && exp.responsibilities.length > 0 && (
+                <ul className="list-disc pl-5 text-sm text-muted-foreground space-y-1">
+                  {exp.responsibilities.map((item, i) => (
+                    <li key={i}>{item}</li>
                   ))}
-                </div>
+                </ul>
               )}
+
+              {/* Tech */}
+              <TechBadgeOverflow tech={exp.tech} limit={7} />
             </div>
           </li>
         ))}

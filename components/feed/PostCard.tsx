@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import TechBadgeOverflow from "../common/TechBadgeOverflow";
 
 type Props = {
   title: string;
   description: string;
   tech: string[];
   slug?: string;
+  type?: "post" | "project";
 };
 
 export default function PostCard({
@@ -14,7 +15,9 @@ export default function PostCard({
   description,
   tech,
   slug,
+  type,
 }: Props) {
+
   const CardInner = (
     <Card className={slug ? "cursor-pointer hover:border-primary transition" : ""}>
       <CardHeader className="font-semibold">
@@ -24,21 +27,21 @@ export default function PostCard({
         <p className="text-sm text-muted-foreground">
           {description}
         </p>
-        <div className="flex flex-wrap gap-2">
-          {tech.map((t) => (
-            <Badge key={t} variant="secondary">
-              {t}
-            </Badge>
-          ))}
-        </div>
+
+        <TechBadgeOverflow tech={tech} limit={8} />
       </CardContent>
     </Card>
   );
 
-  if (!slug) return CardInner;
+  if (!slug || !type) return CardInner;
+
+  const href =
+    type === "project"
+      ? `/projects/${slug}`
+      : `/blogs/${slug}`;
 
   return (
-    <Link href={`/projects/${slug}`} className="block">
+    <Link href={href} className="block">
       {CardInner}
     </Link>
   );
