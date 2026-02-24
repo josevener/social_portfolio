@@ -13,6 +13,7 @@ import { projects } from "@/data/projects";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { experiences } from "@/data/experiences";
 import { useRef } from "react";
+import { GamePreview } from "@/components/games/GamePreview";
 
 export default function Home() {
   const blogPosts = posts;
@@ -75,6 +76,21 @@ export default function Home() {
             {blogPosts.map((post) => (
               <PostCard key={post.id} {...post} type="post"/>
             ))}
+          </div>
+        </section>
+
+        <section>
+          <SectionHeader
+            title="Games"
+            subtitle="Playground projects built for logic and fun"
+          />
+          <div className="mt-4 space-y-4">
+            <GamePreview
+              title="Sudoku"
+              description="Configurable grid puzzle game"
+              url="https://zentrix-sudoku.vercel.app"
+              thumbnail="/images/games/sudoku/thumbnail.png"
+            />
           </div>
         </section>
       </div>
