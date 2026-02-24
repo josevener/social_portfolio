@@ -17,9 +17,29 @@ export type BlogPost = BasePost & {
   }[];
 };
 
-export type ProjectPost = BasePost & {
+export type ProjectPost = {
+  id: number;
   type: "project";
   slug: string;
+  title: string;
+  description: string;
+  tech: string[];
+
+  tags?: string[];
+
+  // NEW — long-form content
+  context?: {
+    program?: string;
+    institution?: string;
+    period?: string;
+  };
+
+  content?: string[]; // paragraphs
+
+  problem?: string;
+  solution?: string;
+  highlights?: string[];
+
   screenshots?: {
     src: string;
     alt: string;
