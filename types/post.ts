@@ -11,10 +11,27 @@ export type BasePost = {
 export type BlogPost = BasePost & {
   type: "post";
   slug: string;
+  author: string;
+  publishedAt: string;
+  introduction: string;
   images?: {
     src: string;
     alt: string;
   }[];
+  sections: {
+    heading?: string;
+    content: string[];
+    code?: {
+      language: string;
+      snippet: string;
+      filename?: string;
+    };
+    list?: {
+      items: string[];
+      ordered?: boolean;
+    };
+  }[];
+  conclusion: string;
 };
 
 export type ProjectPost = {

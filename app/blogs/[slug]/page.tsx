@@ -33,37 +33,92 @@ export default async function BlogPage({
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
           {post.title}
         </h1>
-
         <p className="text-muted-foreground text-base">
           {post.description}
         </p>
       </header>
 
+      {/* Topics */}
+      <div className="flex flex-wrap gap-2">
+        {post.tech.map((t) => (
+          <span key={t} className="text-xs bg-muted px-2 py-1 rounded">
+            {t}
+          </span>
+        ))}
+      </div>
+
+      {/* Metadata */}
+      <div className="flex items-center gap-4 text-sm text-muted-foreground border-y border-border py-4">
+        <span>By {post.author}</span>
+        <span>•</span>
+        <span>{post.publishedAt}</span>
+      </div>
+
       {/* Images */}
       <BlogImages images={post.images} />
 
-      {/* Topics */}
-      <section className="space-y-2">
-        <h2 className="font-semibold">Topics</h2>
-        <div className="flex flex-wrap gap-2">
-          {post.tech.map((t) => (
-            <span
-              key={t}
-              className="text-xs bg-muted px-2 py-1 rounded"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
+      {/* Introduction */}
+      <section className="prose prose-neutral dark:prose-invert max-w-none">
+        <p className="text-xl text-foreground/90 font-medium leading-relaxed">
+          {post.introduction}
+        </p>
       </section>
 
-      {/* Content placeholder */}
-      <section className="prose prose-neutral dark:prose-invert max-w-none">
-        <p>
-          This is where your blog content will go.
-          You can later replace this with MDX or
-          rich content blocks.
-        </p>
+      {/* Sections */}
+      <div className="space-y-12">
+        {post.sections.map((section, sIndex) => (
+          <section key={sIndex} className="space-y-4">
+            {section.heading && (
+              <h2 className="text-2xl font-bold tracking-tight">
+                {section.heading}
+              </h2>
+            )}
+
+            <div className="prose prose-neutral dark:prose-invert max-w-none">
+              {section.content.map((p, pIndex) => (
+                <p key={pIndex}>{p}</p>
+              ))}
+            </div>
+
+            {section.list && (
+              <div className="prose prose-neutral dark:prose-invert max-w-none">
+                {section.list.ordered ? (
+                  <ol>
+                    {section.list.items.map((item, iIndex) => (
+                      <li key={iIndex}>{item}</li>
+                    ))}
+                  </ol>
+                ) : (
+                  <ul>
+                    {section.list.items.map((item, iIndex) => (
+                      <li key={iIndex}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
+
+            {section.code && (
+              <div className="relative group">
+                {section.code.filename && (
+                  <div className="text-xs text-muted-foreground mb-1 font-mono">
+                    {section.code.filename}
+                  </div>
+                )}
+                <pre className="p-4 rounded-lg bg-muted/50 overflow-x-auto border border-border/50 text-sm font-mono">
+                  <code>{section.code.snippet}</code>
+                </pre>
+              </div>
+            )}
+          </section>
+        ))}
+      </div>
+
+      {/* Conclusion */}
+      <section className="bg-muted/30 p-6 rounded-xl border border-border/50 space-y-3">
+        <div className="prose prose-neutral dark:prose-invert max-w-none">
+          <p>{post.conclusion}</p>
+        </div>
       </section>
     </main>
   );
