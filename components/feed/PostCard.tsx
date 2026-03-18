@@ -2,12 +2,15 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import TechBadgeOverflow from "../common/TechBadgeOverflow";
 
+import Image from "next/image";
+
 type Props = {
   title: string;
   description: string;
   tech: string[];
   slug?: string;
   type?: "post" | "project";
+  image?: string; // Optional image for project/blog preview
 };
 
 export default function PostCard({
@@ -16,10 +19,25 @@ export default function PostCard({
   tech,
   slug,
   type,
+  image,
 }: Props) {
 
   const CardInner = (
-    <Card className={slug ? "cursor-pointer hover:border-primary transition" : ""}>
+    <Card className={`overflow-hidden break-inside-avoid mb-6 ${slug ? "cursor-pointer hover:border-primary transition" : ""}`}>
+      {/* 
+          Hero image for the card. 
+          Renders at the top if an image URL is provided. 
+      */}
+      {image && (
+        <div className="relative aspect-video w-full">
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-cover"
+          />
+        </div>
+      )}
       <CardHeader className="font-semibold">
         {title}
       </CardHeader>

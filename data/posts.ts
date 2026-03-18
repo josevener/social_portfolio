@@ -11,12 +11,8 @@ export const posts: BlogPost[] = [
     tech: ["JavaScript", "Async", "Performance"],
     images: [
       {
-        src: "/blogs/promise-all/hero.png",
+        src: "/images/blogs/promise-all-vs-sequential-await/hero.png",
         alt: "Parallel vs sequential execution diagram",
-      },
-      {
-        src: "/blogs/promise-all/example.png",
-        alt: "Async code example comparison",
       },
     ],
   },
@@ -28,5 +24,11 @@ export const posts: BlogPost[] = [
     description:
       "Real-world reminder of how undeclared variables can break production.",
     tech: ["Node.js", "Best Practices"],
+    images: [
+      {
+        src: "/images/blogs/why-declaring-variables-matters-in-nodejs/hero.png",
+        alt: "Node.js variable declaration importance",
+      },
+    ],
   },
 ];

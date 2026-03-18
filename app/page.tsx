@@ -26,7 +26,7 @@ export default function Home() {
       <div className="flex justify-end mb-4">
         <ThemeToggle />
       </div>
-      
+
       {/* Profile */}
       <div className="space-y-4">
         <ProfileHeader />
@@ -46,45 +46,58 @@ export default function Home() {
             subtitle="Professional work and problem solving"
           />
           <div className="mt-4">
-            <ExperienceTimeline experiences={experiences}/>
+            <ExperienceTimeline experiences={experiences} />
           </div>
         </div>
       </div>
 
       <div className="h-px bg-border my-10" />
 
-      {/* Content */}
-      <div ref={scrollRef} className="flex-1 min-h-0 overflow-y-auto space-y-12 pr-2">
-        <section>
+      {/* Content with Masonry Grid */}
+      <div
+        ref={scrollRef}
+        className="flex-1 min-h-0 overflow-y-auto space-y-12 pr-2"
+      >
+        <section className="relative z-10">
           <SectionHeader
             title="Projects"
             subtitle="Selected implementations and case studies"
           />
-          <div className="mt-4 space-y-4">
+          <div className="mt-4 columns-1 md:columns-2 gap-4 space-y-6">
             {projectPosts.map((post) => (
-              <PostCard key={post.id} {...post} type="project"/>
+              <PostCard
+                key={post.id}
+                {...post}
+                type="project"
+                image={post.screenshots?.[0]?.src}
+              />
             ))}
           </div>
         </section>
 
-        <section>
+        <section className="relative z-10">
           <SectionHeader
             title="Blogs"
             subtitle="Thoughts, learnings, and technical notes"
           />
-          <div className="mt-4 space-y-4">
+          <div className="mt-6 columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
             {blogPosts.map((post) => (
-              <PostCard key={post.id} {...post} type="post"/>
+              <PostCard
+                key={post.id}
+                {...post}
+                type="post"
+                image={post.images?.[0]?.src}
+              />
             ))}
           </div>
         </section>
 
-        <section>
+        <section className="relative z-10">
           <SectionHeader
             title="Games"
             subtitle="Playground projects built for logic and fun"
           />
-          <div className="mt-4 space-y-4">
+          <div className="mt-6">
             <GamePreview
               title="Sudoku"
               description="Configurable grid puzzle game"
