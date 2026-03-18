@@ -20,7 +20,7 @@ export function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    return <div className="h-9 w-16" />; // Placeholder to avoid layout shift
+    return <div className="h-[30px] w-14 rounded-lg bg-muted/50 animate-fade-in-up opacity-0" />; // Placeholder to avoid layout shift
   }
 
   const isDark = theme === "dark";
@@ -33,7 +33,7 @@ export function ThemeToggle() {
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className={cn(
         "group relative h-[30px] w-14 rounded-lg p-1 transition-all duration-300",
-        "bg-muted hover:bg-muted/80 border border-border/50 cursor-pointer",
+        "bg-muted hover:bg-muted/80 border border-border/50 cursor-pointer animate-fade-in-up opacity-0",
         "active:scale-95 hover:scale-105",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       )}

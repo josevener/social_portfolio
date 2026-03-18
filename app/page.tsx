@@ -30,21 +30,21 @@ export default function Home() {
 
       {/* Profile */}
       <div className="space-y-4">
-        <ProfileHeader />
-        <StatsBar />
-        <ProfileActions />
+        <div className="animate-fade-in-up opacity-0"><ProfileHeader /></div>
+        <div className="animate-fade-in-up opacity-0 delay-100"><StatsBar /></div>
+        <div className="animate-fade-in-up opacity-0 delay-200"><ProfileActions /></div>
       </div>
 
-      <div className="h-px bg-border my-6" />
+      <div className="h-px bg-border my-6 animate-fade-in-up opacity-0 delay-300" />
 
       {/* About + Experience */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="space-y-6">
+        <div className="space-y-6 animate-fade-in-up opacity-0 delay-300">
           <AboutMe />
           <TechStack />
         </div>
 
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 animate-fade-in-up opacity-0 delay-500">
           <SectionHeader
             title="Experience"
             subtitle="Professional work and problem solving"
@@ -55,14 +55,14 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="h-px bg-border my-10" />
+      <div className="h-px bg-border my-10 animate-fade-in-up opacity-0 delay-700" />
 
       {/* Content with Masonry Grid */}
       <div
         ref={scrollRef}
         className="flex-1 min-h-0 overflow-y-auto space-y-12 pr-2"
       >
-        <section className="relative z-10">
+        <section className="relative z-10 animate-fade-in-up opacity-0 delay-700">
           <SectionHeader
             title="Projects"
             subtitle="Selected implementations and case studies"
@@ -79,7 +79,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="relative z-10">
+        <section className="relative z-10 animate-fade-in-up opacity-0 delay-1000">
           <SectionHeader
             title="Blogs"
             subtitle="Thoughts, learnings, and technical notes"
@@ -96,7 +96,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="relative z-10">
+        <section className="relative z-10 animate-fade-in-up opacity-0 delay-[1300ms]">
           <SectionHeader
             title="Games"
             subtitle="Playground projects built for logic and fun"
