@@ -14,6 +14,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { experiences } from "@/data/experiences";
 import { useRef } from "react";
 import { GamePreview } from "@/components/games/GamePreview";
+import TechStack from "@/components/profile/TechStack";
 
 export default function Home() {
   const blogPosts = posts;
@@ -38,7 +39,10 @@ export default function Home() {
 
       {/* About + Experience */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <AboutMe />
+        <div className="space-y-6">
+          <AboutMe />
+          <TechStack />
+        </div>
 
         <div className="lg:col-span-2">
           <SectionHeader
