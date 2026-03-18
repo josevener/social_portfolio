@@ -1,5 +1,6 @@
 import { profile } from "@/data/profile";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { BadgeCheck } from "lucide-react";
 
 export default function ProfileHeader() {
   return (
@@ -10,9 +11,14 @@ export default function ProfileHeader() {
       </Avatar>
 
       <div className="space-y-1">
-        <h1 className="text-xl sm:text-2xl font-bold">
-          {profile.name}
-        </h1>
+        <div className="flex items-center justify-center gap-2 sm:justify-start">
+          <h1 className="text-xl sm:text-2xl font-bold">
+            {profile.name}
+          </h1>
+          {profile.isVerified && (
+            <BadgeCheck className="h-5 w-5 fill-blue-500 text-white dark:text-slate-950" />
+          )}
+        </div>
         <p className="text-muted-foreground">{profile.handle}</p>
 
         <p className="font-medium">{profile.headline}</p>
