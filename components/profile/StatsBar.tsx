@@ -20,7 +20,7 @@ export default function StatsBar() {
       </div>
 
       <div>
-        <span className="font-bold">1+</span> Year Exp
+        <span className="font-bold">2</span> Years of Experience
       </div>
     </div>
   );
