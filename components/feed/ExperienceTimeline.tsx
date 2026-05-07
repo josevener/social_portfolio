@@ -55,4 +55,4 @@ export default function ExperienceTimeline({ experiences }: Props) {
       </ul>
     </div>
   );
-}
+}

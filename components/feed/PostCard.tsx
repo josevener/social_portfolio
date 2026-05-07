@@ -23,7 +23,7 @@ export default function PostCard({
 }: Props) {
 
   const CardInner = (
-    <Card className={`overflow-hidden break-inside-avoid mb-6 ${slug ? "cursor-pointer hover:border-primary transition" : ""}`}>
+    <Card className={`overflow-hidden break-inside-avoid mb-6 glass-card group ${slug ? "cursor-pointer hover:border-primary/50 hover:scale-[1.02] transition-all duration-300" : ""}`}>
       {/* 
           Hero image for the card. 
           Renders at the top if an image URL is provided. 

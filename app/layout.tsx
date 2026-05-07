@@ -15,8 +15,26 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: `${profile.name} — ${profile.headline}`,
-  description: "Portfolio showcasing projects and experience of Jose Vener Rafael, a full-stack developer specializing in Laravel, React, and Node.js.",
+  title: {
+    default: `${profile.name} — ${profile.headline}`,
+    template: `%s | ${profile.name}`
+  },
+  description: profile.bio,
+  openGraph: {
+    title: `${profile.name} — ${profile.headline}`,
+    description: profile.bio,
+    url: "https://josevener.vercel.app",
+    siteName: profile.name,
+    locale: "en_PH",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${profile.name} — ${profile.headline}`,
+    description: profile.bio,
+    creator: "@josevener",
+  },
+  keywords: ["Laravel", "React", "Next.js", "Node.js", "Full-Stack Developer", "Portfolio"],
 };
 
 export default function RootLayout({
@@ -29,6 +47,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="mesh-gradient" />
+        <div className="noise-bg" />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

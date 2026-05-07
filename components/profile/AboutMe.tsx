@@ -3,7 +3,7 @@ import SectionHeader from "../layout/SectionHeader";
 
 export default function AboutMe() {
   return (
-    <Card>
+    <Card className="glass-card">
       <CardContent className="p-5 space-y-4">
         <SectionHeader
           title="About Me"

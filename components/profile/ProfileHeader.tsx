@@ -19,7 +19,13 @@ export default function ProfileHeader() {
             <BadgeCheck className="h-5 w-5 fill-blue-500 text-white dark:text-slate-950" />
           )}
         </div>
-        <p className="text-muted-foreground">{profile.handle}</p>
+        <div className="flex items-center justify-center gap-3 sm:justify-start">
+          <p className="text-muted-foreground">{profile.handle}</p>
+          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-green-500/10 border border-green-500/20 text-[10px] font-bold text-green-500 uppercase tracking-wider animate-pulse">
+            <div className="h-1.5 w-1.5 rounded-full bg-green-500" />
+            Available for work
+          </div>
+        </div>
 
         <p className="font-medium">{profile.headline}</p>
         <p className="text-sm text-muted-foreground">
