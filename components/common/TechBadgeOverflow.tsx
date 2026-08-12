@@ -36,9 +36,13 @@ export default function TechBadgeOverflow({
       {hidden.length > 0 && (
         <HoverCard openDelay={150} closeDelay={100}>
           <HoverCardTrigger asChild>
-            <span className="text-xs text-muted-foreground cursor-help hover:text-foreground underline-offset-2 hover:underline">
+            <button
+              type="button"
+              className="cursor-pointer text-xs text-muted-foreground underline-offset-2 hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              aria-label={`Show ${hidden.length} more technologies`}
+            >
               +{hidden.length} more
-            </span>
+            </button>
           </HoverCardTrigger>
 
           <HoverCardContent

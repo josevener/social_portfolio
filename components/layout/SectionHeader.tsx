@@ -5,8 +5,8 @@ type Props = {
 
 export default function SectionHeader({ title, subtitle }: Props) {
   return (
-    <div className="space-y-1 mb-4">
-      <h2 className="text-xl font-semibold tracking-tight">
+    <div className="mb-4 space-y-1 border-l-2 border-primary pl-3">
+      <h2 className="text-xl font-semibold tracking-tight text-foreground">
         {title}
       </h2>
       {subtitle && (

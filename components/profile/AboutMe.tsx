@@ -4,30 +4,30 @@ import SectionHeader from "../layout/SectionHeader";
 export default function AboutMe() {
   return (
     <Card className="glass-card">
-      <CardContent className="p-5 space-y-4">
+      <CardContent className="space-y-4 p-5">
         <SectionHeader
           title="About Me"
-          subtitle="A short introduction and how I approach my work"
+          subtitle="How I approach building useful software"
         />
 
         <p className="text-sm font-medium">
-          Full-stack developer focused on building practical, production-ready systems.
+          Full-stack developer building practical web applications, APIs, and connected systems.
         </p>
 
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          I work closely with real-world problems—debugging production issues,
-          improving workflows, and turning unclear requirements into working solutions.
+        <p className="text-sm leading-relaxed text-muted-foreground">
+          I work from the problem outward: clarify requirements, solve issues in
+          existing systems, and ship maintainable improvements.
         </p>
 
-        <ul className="text-sm text-muted-foreground space-y-1">
-          <li>• Clean, maintainable architecture</li>
-          <li>• Clear and honest communication</li>
-          <li>• Shipping features that actually get used</li>
+        <ul className="list-disc space-y-1 pl-4 text-sm text-muted-foreground">
+          <li>Maintainable architecture that supports future changes</li>
+          <li>Clear, direct communication with teammates and clients</li>
+          <li>Features shaped around real workflow needs</li>
         </ul>
 
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          I enjoy improving system performance, reducing complexity,
-          and making development workflows easier for teams to maintain.
+        <p className="text-sm leading-relaxed text-muted-foreground">
+          I am especially interested in improving performance, reducing unnecessary
+          complexity, and making software easier for teams to work with.
         </p>
       </CardContent>
     </Card>

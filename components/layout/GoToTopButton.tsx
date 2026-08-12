@@ -1,31 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
+import { useEffect, useState } from "react";
+
 import { Button } from "@/components/ui/button";
-import { RefObject } from "react";
 
-type Props = {
-  containerRef: RefObject<HTMLDivElement | null>;
-};
-
-export default function GoToTopButton({ containerRef }: Props) {
+export default function GoToTopButton() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
+    // The document owns the scrollbar, so visibility must follow the window position.
     const onScroll = () => {
-      setVisible(el.scrollTop > 100);
+      setVisible(window.scrollY > 400);
     };
 
-    el.addEventListener("scroll", onScroll);
-    return () => el.removeEventListener("scroll", onScroll);
-  }, [containerRef]);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const scrollToTop = () => {
-    containerRef.current?.scrollTo({
+    window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
@@ -35,14 +31,11 @@ export default function GoToTopButton({ containerRef }: Props) {
 
   return (
     <Button
-      size="icon"
+      size="icon-lg"
       onClick={scrollToTop}
-      className="
-        fixed bottom-6 right-6 z-50
-        rounded-full shadow-lg
-        hover:scale-105 transition
-      "
+      className="fixed right-4 bottom-24 z-50 cursor-pointer rounded-full shadow-lg transition hover:scale-105 sm:right-6 sm:bottom-6"
       aria-label="Go to top"
+      title="Go to top"
     >
       <ArrowUp className="h-4 w-4" />
     </Button>

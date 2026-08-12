@@ -1,42 +1,41 @@
+import { BadgeCheck, MapPin } from "lucide-react";
+
 import { profile } from "@/data/profile";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { BadgeCheck } from "lucide-react";
 
 export default function ProfileHeader() {
   return (
-    <div className="flex flex-col items-center text-center gap-4 sm:flex-row sm:items-start sm:text-left">
+    <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:items-start sm:text-left">
       <Avatar className="h-28 w-28 sm:h-36 sm:w-36 md:h-40 md:w-40">
         <AvatarImage src={profile.avatar} />
         <AvatarFallback>JR</AvatarFallback>
       </Avatar>
 
       <div className="space-y-1">
-        <div className="flex items-center justify-center gap-2 sm:justify-start">
-          <h1 className="text-xl sm:text-2xl font-bold">
-            {profile.name}
-          </h1>
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
+          <h1 className="text-xl font-bold sm:text-2xl">{profile.name}</h1>
           {profile.isVerified && (
-            <BadgeCheck className="h-5 w-5 fill-blue-500 text-white dark:text-slate-950" />
+            <BadgeCheck
+              className="h-5 w-5 shrink-0 fill-primary text-primary-foreground"
+              aria-label="Verified profile"
+            />
           )}
         </div>
-        <div className="flex items-center justify-center gap-3 sm:justify-start">
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-start">
           <p className="text-muted-foreground">{profile.handle}</p>
-          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-green-500/10 border border-green-500/20 text-[10px] font-bold text-green-500 uppercase tracking-wider animate-pulse">
+          <div className="flex items-center gap-1.5 rounded-full border border-green-500/20 bg-green-500/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-green-500 animate-pulse">
             <div className="h-1.5 w-1.5 rounded-full bg-green-500" />
             Available for work
           </div>
         </div>
 
         <p className="font-medium">{profile.headline}</p>
-        <p className="text-sm text-muted-foreground">
-          {profile.subHeadline}
-        </p>
+        <p className="text-sm text-muted-foreground">{profile.subHeadline}</p>
 
-        <p className="text-sm mt-2 max-w-prose">
-          {profile.bio}
-        </p>
-        <p className="text-sm text-muted-foreground">
-          📍 {profile.location}
+        <p className="mt-2 max-w-prose text-sm">{profile.bio}</p>
+        <p className="flex items-center justify-center gap-1.5 text-sm text-muted-foreground sm:justify-start">
+          <MapPin className="h-4 w-4 shrink-0" aria-hidden="true" />
+          {profile.location}
         </p>
       </div>
     </div>

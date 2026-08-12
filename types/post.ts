@@ -11,6 +11,7 @@ export type BasePost = {
 export type BlogPost = BasePost & {
   type: "post";
   slug: string;
+  tags?: string[];
   author: string;
   publishedAt: string;
   introduction: string;
@@ -41,22 +42,19 @@ export type ProjectPost = {
   title: string;
   description: string;
   tech: string[];
-
+  // Optional live URL lets the portfolio surface deployed work when available.
+  liveUrl?: string;
   tags?: string[];
-
-  // NEW — long-form content
+  // Long-form project content powers the dedicated project detail page.
   context?: {
     program?: string;
     institution?: string;
     period?: string;
   };
-
-  content?: string[]; // paragraphs
-
+  content?: string[];
   problem?: string;
   solution?: string;
   highlights?: string[];
-
   screenshots?: {
     src: string;
     alt: string;
@@ -65,7 +63,10 @@ export type ProjectPost = {
 
 export type ExperiencePost = BasePost & {
   type: "experience";
-  period: string;
+  startDate: string;
+  endDate?: string;
+  datePrecision?: "month" | "year";
+  category: "work" | "education";
   responsibilities?: string[];
 };
 

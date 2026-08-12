@@ -1,4 +1,8 @@
+"use client";
+
 import { ExperiencePost } from "@/types/post";
+import { formatExperiencePeriod } from "@/lib/experience";
+import { useCurrentMonth } from "@/lib/use-current-month";
 import TechBadgeOverflow from "../common/TechBadgeOverflow";
 
 type Props = {
@@ -6,6 +10,8 @@ type Props = {
 };
 
 export default function ExperienceTimeline({ experiences }: Props) {
+  const currentMonth = useCurrentMonth();
+
   return (
     <div className="relative">
       <ul className="space-y-10">
@@ -26,8 +32,8 @@ export default function ExperienceTimeline({ experiences }: Props) {
                 <h3 className="font-medium leading-tight">
                   {exp.title}
                 </h3>
-                <span className="text-xs text-muted-foreground whitespace-nowrap">
-                  {exp.period}
+                <span className="whitespace-nowrap text-xs font-semibold text-foreground">
+                  {formatExperiencePeriod(exp, currentMonth)}
                 </span>
               </div>
 
@@ -55,4 +61,4 @@ export default function ExperienceTimeline({ experiences }: Props) {
       </ul>
     </div>
   );
-}
+}

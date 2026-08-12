@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Mail, Github, Linkedin, Download, Check, Copy, MessageSquare } from "lucide-react";
+import { Check, Download, Github, Linkedin, Mail, MessageSquare } from "lucide-react";
 import { contact } from "@/data/contact";
 import { useState } from "react";
 import ContactModal from "../common/ContactModal";
@@ -27,10 +27,10 @@ export default function ProfileActions() {
     <TooltipProvider>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
         {/* Icon actions */}
-        <div className="flex gap-3 justify-center sm:justify-start">
+        <div className="grid w-full grid-cols-4 gap-2 sm:flex sm:w-auto sm:gap-3">
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button size="icon" variant="outline" onClick={copyEmail} aria-label="Copy email" className="cursor-pointer">
+              <Button size="icon" variant="outline" onClick={copyEmail} aria-label="Copy email" className="h-11 w-full sm:size-9">
                 {copied ? <Check className="h-4 w-4 text-green-500" /> : <Mail className="h-4 w-4" />}
               </Button>
             </TooltipTrigger>
@@ -41,7 +41,7 @@ export default function ProfileActions() {
             <TooltipTrigger asChild>
               <div>
                 <ContactModal open={isModalOpen} onOpenChange={setIsModalOpen}>
-                  <Button size="icon" variant="outline" aria-label="Send message" className="cursor-pointer">
+                  <Button size="icon" variant="outline" aria-label="Send message" className="h-11 w-full sm:size-9">
                     <MessageSquare className="h-4 w-4" />
                   </Button>
                 </ContactModal>
@@ -52,7 +52,7 @@ export default function ProfileActions() {
 
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button size="icon" variant="outline" asChild className="cursor-pointer">
+              <Button size="icon" variant="outline" asChild className="h-11 w-full sm:size-9">
                 <a
                   href={contact.github}
                   target="_blank"
@@ -68,7 +68,7 @@ export default function ProfileActions() {
 
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button size="icon" variant="outline" asChild className="cursor-pointer">
+              <Button size="icon" variant="outline" asChild className="h-11 w-full sm:size-9">
                 <a
                   href={contact.linkedin}
                   target="_blank"
@@ -92,7 +92,7 @@ export default function ProfileActions() {
         {/* CTA */}
         <Button
           asChild
-          className="w-full sm:w-auto sm:ml-auto group relative overflow-hidden cursor-pointer"
+          className="group relative w-full cursor-pointer overflow-hidden shadow-lg shadow-primary/20 sm:ml-auto sm:w-auto"
         >
           <a href={contact.resumeUrl} download>
             <Download className="h-4 w-4 mr-2 group-hover:translate-y-1 transition-transform" />
@@ -103,4 +103,4 @@ export default function ProfileActions() {
       </div>
     </TooltipProvider>
   );
-}
+}

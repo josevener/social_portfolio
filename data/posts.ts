@@ -8,6 +8,7 @@ export const posts: BlogPost[] = [
     title: "Promise.all vs Sequential await",
     description: "When parallel execution helps and when it introduces risk.",
     tech: ["JavaScript", "Async", "Performance"],
+    tags: ["Concurrency", "Promises", "Error Handling"],
     author: "Jose Vener Rafael",
     publishedAt: "March 18, 2026",
     introduction:
@@ -80,6 +81,7 @@ const [user, notifications, analytics] = await Promise.all([
     description:
       "Real-world reminder of how undeclared variables can break production.",
     tech: ["Node.js", "Best Practices"],
+    tags: ["JavaScript", "Code Quality", "Memory Management"],
     author: "Jose Vener Rafael",
     publishedAt: "March 15, 2026",
     introduction:
@@ -101,7 +103,7 @@ const [user, notifications, analytics] = await Promise.all([
           language: "javascript",
           snippet: `async function handleRequest(req, res) {
   // OOPS: user becomes global and shared!
-  user = await db.users.find(req.params.id); 
+  user = await db.users.find(req.params.id);
   res.json(user);
 }`,
         },
@@ -146,4 +148,4 @@ const processData = (data) => {
     conclusion:
       "A stable Node.js application depends on predictable state. By strictly scoping your variables and leveraging modern tooling, you protect your server from data contamination and fatal memory leaks. Clean code isn't just about aesthetics; it's about production reliability.",
   },
-];
+];

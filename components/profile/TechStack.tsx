@@ -12,7 +12,7 @@ import { skills } from "@/data/skills";
  */
 export default function TechStack() {
   return (
-    <Card className="glass-card overflow-hidden">
+    <Card className="glass-card flex h-full flex-1 overflow-hidden">
       <CardContent className="p-5 space-y-6">
         <SectionHeader
           title="Tech Stack"

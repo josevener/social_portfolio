@@ -62,7 +62,7 @@ export default function ContactModal({ children, open, onOpenChange }: ContactMo
     const data = { name, email, message };
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/api/v1/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -84,9 +84,13 @@ export default function ContactModal({ children, open, onOpenChange }: ContactMo
         setIsOpen(false);
         setIsSuccess(false);
       }, 3000);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
-      setError(err.message || "Something went wrong. Please try again later.");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again later."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -117,7 +121,7 @@ export default function ContactModal({ children, open, onOpenChange }: ContactMo
             <div className="space-y-1">
               <h3 className="font-semibold text-lg">Message Sent!</h3>
               <p className="text-sm text-muted-foreground">
-                Thank you for reaching out. I'll get back to you soon.
+                Thank you for reaching out. I&apos;ll get back to you soon.
               </p>
             </div>
           </div>
@@ -146,7 +150,7 @@ export default function ContactModal({ children, open, onOpenChange }: ContactMo
               <Textarea
                 id="message"
                 name="message"
-                placeholder="What's on your mind?"
+                placeholder="What&apos;s on your mind?"
                 className="min-h-[120px] bg-background/50 resize-none"
                 required
                 maxLength={300}
@@ -155,7 +159,7 @@ export default function ContactModal({ children, open, onOpenChange }: ContactMo
               />
             </div>
             <DialogFooter>
-              <Button type="submit" className="w-full" disabled={isSubmitting}>
+              <Button type="submit" className="w-full cursor-pointer" disabled={isSubmitting}>
                 {isSubmitting ? (
                   <>
                     <div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />

@@ -11,56 +11,63 @@ import { cn } from "@/lib/utils";
  * Smoothly transitions a thumb/pill between Sun and Moon states.
  */
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   // Avoid hydration mismatch by waiting for mount
   useEffect(() => {
-    setMounted(true);
+    const animationFrame = window.requestAnimationFrame(() => setMounted(true));
+
+    return () => window.cancelAnimationFrame(animationFrame);
   }, []);
 
   if (!mounted) {
-    return <div className="h-[30px] w-14 rounded-lg bg-muted/50 animate-fade-in-up opacity-0" />; // Placeholder to avoid layout shift
+    return <div className="h-11 w-20 rounded-xl bg-muted/50 animate-fade-in-up opacity-0" />; // Placeholder to avoid layout shift
   }
 
-  const isDark = theme === "dark";
+  const isDark = resolvedTheme === "dark";
+  const nextThemeLabel = isDark ? "Switch to light theme" : "Switch to dark theme";
 
   return (
     <button
       role="switch"
       aria-checked={isDark}
-      aria-label="Toggle theme"
+      aria-label={nextThemeLabel}
+      title={nextThemeLabel}
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className={cn(
-        "group relative h-[30px] w-14 rounded-lg p-1 transition-all duration-300",
-        "bg-muted hover:bg-muted/80 border border-border/50 cursor-pointer animate-fade-in-up opacity-0",
-        "active:scale-95 hover:scale-105",
+        "group relative h-11 w-20 rounded-xl border p-1 transition-all duration-300",
+        "cursor-pointer border-border/60 bg-background/70 shadow-sm hover:border-primary/35 hover:bg-muted/70 hover:shadow-md",
+        "animate-fade-in-up opacity-0 active:scale-95",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       )}
     >
-      {/* Sliding Pill */}
-      <div 
+      {/* The active thumb gives the current theme a clear visual state. */}
+      <div
         className={cn(
-          "absolute h-[22px] w-[22px] rounded-md bg-background shadow-sm transition-all duration-300 ease-spring",
-          isDark ? "left-[28px]" : "left-1"
+          "absolute top-1 h-9 w-9 rounded-lg bg-primary shadow-md transition-all duration-300 ease-spring",
+          isDark ? "left-10" : "left-1"
         )}
       />
 
-      {/* Icons */}
-      <div className="relative flex h-full w-full items-center justify-between px-1">
-        <Sun 
+      {/* Both options remain visible; color and the thumb identify the selected one. */}
+      <div className="relative grid h-full w-full grid-cols-2 place-items-center">
+        <Sun
+          aria-hidden="true"
           className={cn(
-            "h-3.5 w-3.5 transition-all duration-500 ease-spring",
-            !isDark ? "text-foreground scale-110 rotate-0" : "text-muted-foreground rotate-45 scale-75 group-hover:text-foreground/70"
-          )} 
+            "h-4 w-4 transition-all duration-300 ease-spring",
+            !isDark ? "scale-110 text-primary-foreground" : "text-muted-foreground group-hover:text-foreground"
+          )}
         />
-        <Moon 
+        <Moon
+          aria-hidden="true"
           className={cn(
-            "h-3.5 w-3.5 transition-all duration-500 ease-spring",
-            isDark ? "text-foreground scale-110 rotate-0" : "text-muted-foreground -rotate-45 scale-75 group-hover:text-foreground/70"
-          )} 
+            "h-4 w-4 transition-all duration-300 ease-spring",
+            isDark ? "scale-110 text-primary-foreground" : "text-muted-foreground group-hover:text-foreground"
+          )}
         />
       </div>
+      <span className="sr-only">{isDark ? "Dark theme active" : "Light theme active"}</span>
     </button>
   );
 }
