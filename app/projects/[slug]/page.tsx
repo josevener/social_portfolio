@@ -48,26 +48,43 @@ export default async function ProjectPage({
         Back to profile
       </Link>
 
-      <header className="space-y-4">
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          {project.title}
-        </h1>
-        <TagBadges tags={project.tags} />
-        <p className="max-w-3xl text-base text-muted-foreground">
-          {project.description}
-        </p>
-        {project.liveUrl && (
-          <div>
-            {/* This CTA keeps live deployments easy to reach without changing the experience for every project. */}
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-border/70 bg-background/70 px-4 py-2 text-sm font-medium transition hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            >
-              Visit Live Project
-              <ExternalLink className="h-4 w-4" />
-            </a>
+      <header className="flex flex-col justify-between gap-5 lg:flex-row">
+        <div className="space-y-4">
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            {project.title}
+          </h1>
+          <TagBadges tags={project.tags} />
+          <p className="max-w-3xl text-base text-muted-foreground">
+            {project.description}
+          </p>
+          {project.liveUrl && (
+            <div>
+              {/* This CTA keeps live deployments easy to reach without changing the experience for every project. */}
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-border/70 bg-background/70 px-4 py-2 text-sm font-medium transition hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                Visit Live Project
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </div>
+          )}
+        </div>
+
+        {project.slug === "zentrust" && (
+          <div className="shrink-0 self-start">
+            {/* The hosted widget lets visitors vote for ZenTrust without leaving the case study first. */}
+            <iframe
+              src="https://appbuildersph.com/embed/apps/zentrust"
+              title="ZenTrust votes on App Builders PH"
+              width="320"
+              height="72"
+              className="border-0"
+              loading="lazy"
+              scrolling="no"
+            />
           </div>
         )}
       </header>

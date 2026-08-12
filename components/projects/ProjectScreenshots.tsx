@@ -44,7 +44,7 @@ export default function ProjectScreenshots({ screenshots }: Props) {
                 src={hero.src}
                 alt={hero.alt}
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                className="object-contain"
                 sizes="100vw"
                 priority
               />
@@ -64,7 +64,7 @@ export default function ProjectScreenshots({ screenshots }: Props) {
                   src={shot.src}
                   alt={shot.alt}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="object-contain"
                   sizes="(min-width: 640px) 50vw, 100vw"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">

@@ -2,6 +2,65 @@ import { ProjectPost } from "@/types/post";
 
 export const projects: ProjectPost[] = [
   {
+    id: 11,
+    type: "project",
+    slug: "zentrust",
+    title: "ZenTrust",
+    description:
+      "A full-stack marketplace platform that gives buyers and sellers a clearer, more accountable way to complete online transactions through protected payment, verification, and dispute workflows.",
+    liveUrl: "https://zentrustph.vercel.app",
+    tags: ["Marketplace", "Escrow", "Fintech", "Trust & Safety", "Real-time"],
+    content: [
+      "ZenTrust is a full-stack marketplace platform designed for the moments that make peer-to-peer online deals feel uncertain. It brings listings, transaction details, payment status, delivery confirmation, and supporting records into one shared workflow for both buyers and sellers.",
+      "I built the product around a structured protected-transaction flow: the parties agree on the transaction, payment is recorded and secured, delivery can be confirmed, and funds are released when the process is complete. The experience also includes wallet activity, transaction history, identity-verification support, and clear status updates so users can understand what happens next.",
+      "For cases that need review, ZenTrust supports an evidence-based dispute process and auditable financial records. I focused on making a complex set of financial and marketplace interactions feel understandable in the interface while keeping the underlying application organized around secure sessions, role-aware access, and explicit transaction states.",
+      "The project combines a responsive Next.js client with an Express API, relational data layer, payment integrations, and Socket.IO-powered real-time features. It reflects my approach to product engineering: pairing refined UI with dependable workflows for high-trust user actions.",
+    ],
+    problem:
+      "Online marketplace deals often happen across disconnected chats, payment screenshots, and informal agreements, leaving both sides without a shared record or a clear process when payment, delivery, or terms are questioned.",
+    solution:
+      "I created a unified marketplace and protected-transaction experience that guides buyers and sellers through recorded payment, escrow-style status steps, delivery confirmation, wallet activity, and evidence-based issue handling.",
+    highlights: [
+      "Implemented marketplace, wallet, transaction, and escrow-style lifecycle workflows in one platform",
+      "Built verification, role-aware access, financial ledger records, and evidence-based dispute capabilities",
+      "Connected a Next.js frontend to an Express, MySQL, and Socket.IO backend with payment-provider integration",
+    ],
+    screenshots: [
+      {
+        src: "/images/projects/zentrust/hero.png",
+        alt: "ZenTrust marketplace, wallet, and transaction experiences presented together",
+      },
+      {
+        src: "/images/projects/zentrust/finance-showcase.png",
+        alt: "ZenTrust payout and transaction-management interface on desktop screens",
+      },
+      {
+        src: "/images/projects/zentrust/marketplace.png",
+        alt: "ZenTrust marketplace browsing experience with listing search and categories",
+      },
+      {
+        src: "/images/projects/zentrust/wallet.png",
+        alt: "ZenTrust wallet dashboard with balances and payout account information",
+      },
+      {
+        src: "/images/projects/zentrust/transactions.png",
+        alt: "ZenTrust transaction dashboard with activity summaries and status filters",
+      },
+    ],
+    tech: [
+      "Next.js",
+      "React",
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "MySQL",
+      "Socket.IO",
+      "PayMongo",
+      "JWT Auth",
+      "Nodemailer",
+    ],
+  },
+  {
     id: 10,
     type: "project",
     slug: "brokerage-platform",
