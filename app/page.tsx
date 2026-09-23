@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import {
   ArrowUpRight,
   BookOpen,
@@ -26,7 +28,6 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { experiences } from "@/data/experiences";
-import { contact } from "@/data/contact";
 import { posts } from "@/data/posts";
 import { projects } from "@/data/projects";
 
@@ -207,33 +208,46 @@ export default function Home() {
           <div className="mt-4">
             <ExperienceTimeline experiences={experiences} />
           </div>
-          {/* This sponsored placement turns the open timeline area into a clear partnership opportunity. */}
+          {/* This spotlight gives a featured product a purposeful home beside the experience timeline. */}
           <aside
             className="glass-card ad-space-card relative mt-8 flex-1 overflow-hidden rounded-2xl border-none p-6 sm:p-7"
-            aria-labelledby="advertise-heading"
+            aria-labelledby="featured-project-heading"
           >
             <div className="absolute -right-12 -top-12 size-40 rounded-full bg-primary/10 blur-2xl" />
-            <div className="relative flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+            <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
               <div className="max-w-xl">
                 <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
                   <span className="grid size-8 place-items-center rounded-lg bg-primary/10">
                     <Megaphone className="size-4" aria-hidden="true" />
                   </span>
-                  Sponsor this space
+                  Featured project
                 </div>
-                <h3 id="advertise-heading" className="mt-4 text-xl font-semibold tracking-tight">
-                  Put your product in front of builders
+                <h3 id="featured-project-heading" className="mt-4 text-xl font-semibold tracking-tight">
+                  ZenTrust
                 </h3>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                  Have a developer tool, service, or opportunity to share? This placement is available for relevant advertising and partnerships.
+                  A marketplace platform that brings protected payments, transaction records, and dispute workflows into one shared buyer-seller experience.
                 </p>
+                <Button asChild className="mt-5 rounded-xl shadow-lg shadow-primary/15">
+                  <Link href="/projects/zentrust">
+                    View ZenTrust
+                    <ArrowUpRight className="size-4" aria-hidden="true" />
+                  </Link>
+                </Button>
               </div>
-              <Button asChild className="shrink-0 rounded-xl shadow-lg shadow-primary/15">
-                <a href={`mailto:${contact.email}?subject=Advertising%20and%20partnership%20inquiry`}>
-                  Advertise here
-                  <ArrowUpRight className="size-4" aria-hidden="true" />
-                </a>
-              </Button>
+              <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden rounded-xl border border-white/10 bg-background/20 sm:w-48 lg:w-52">
+                <Image
+                  src="/images/projects/zentrust/hero.png"
+                  alt="ZenTrust marketplace, wallet, and transaction experiences"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 208px, (min-width: 640px) 192px, 100vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+                <span className="absolute bottom-3 left-3 text-xs font-semibold uppercase tracking-[0.14em] text-white">
+                  Marketplace platform
+                </span>
+              </div>
             </div>
           </aside>
         </div>
@@ -302,7 +316,8 @@ export default function Home() {
                   : "Selected implementations and case studies"
               }
             />
-            <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+            {/* A denser desktop grid keeps the growing project collection easy to scan without reducing mobile readability. */}
+            <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {filteredProjects.map((post) => (
                 <PostCard
                   key={post.id}

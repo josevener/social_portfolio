@@ -1,6 +1,85 @@
 import { ProjectPost } from "@/types/post";
 
 export const projects: ProjectPost[] = [
+  // These entries use imagery from the live products so the portfolio previews reflect the work visitors can explore.
+  {
+    id: 13,
+    type: "project",
+    slug: "sift-and-shop",
+    title: "Sift & Shop",
+    description:
+      "A curated affiliate-shopping experience that turns marketplace browsing into a thoughtful, searchable product edit with direct partner-store handoffs.",
+    liveUrl: "https://siftandshop.vercel.app",
+    tags: ["E-commerce", "Product Discovery", "Affiliate Commerce", "Responsive Design"],
+    content: [
+      "Sift & Shop is a curated-commerce site that helps people discover useful, well-considered products without starting from an endless marketplace feed. Its editorial presentation frames each recommendation with clear product context and a direct path to the relevant shop.",
+      "The browsing experience brings a searchable catalog together with category, platform, and sorting controls, helping visitors narrow a small, intentional edit. Product pages provide a closer look before handing visitors off to a trusted marketplace.",
+      "I shaped the interface with a warm, magazine-like visual system: generous space, considered typography, product-led imagery, and calm calls to action. An affiliate disclosure makes the commercial relationship clear while keeping the discovery flow straightforward.",
+    ],
+    problem:
+      "Marketplace feeds make it easy to find more options, but much harder to identify the few products worth considering.",
+    solution:
+      "I created a focused product-discovery experience that organizes selected finds into a searchable, filterable edit and links visitors directly to the relevant partner storefront.",
+    highlights: [
+      "Built a searchable catalog with category, marketplace, and sort controls",
+      "Created product detail pages that lead clearly to the relevant partner store",
+      "Used an editorial, product-led design system with clear affiliate disclosure",
+    ],
+    screenshots: [
+      {
+        src: "/images/projects/sift-and-shop/website-preview.png",
+        alt: "Sift & Shop homepage showing its warm editorial layout, product hero, navigation, and shopping calls to action",
+      },
+      {
+        src: "/images/projects/sift-and-shop/product-detail.png",
+        alt: "Sift & Shop product-detail page showing product imagery, clear store handoff, and affiliate disclosure",
+      },
+      {
+        src: "/images/projects/sift-and-shop/product-detail-moto.png",
+        alt: "Sift & Shop motorcycle product-detail page showing its consistent editorial product layout",
+      },
+    ],
+    tech: ["Next.js", "Responsive Design", "Product Catalog", "Search & Filters"],
+  },
+  {
+    id: 12,
+    type: "project",
+    slug: "ssi-metal",
+    title: "SSI Metal Website Revamp",
+    description:
+      "A client website redesign that transforms SSI Metal's outdated online presence into a modern, elegant platform for its capabilities, project history, and quote-led client journey.",
+    liveUrl: "https://ssimetal.vercel.app",
+    tags: ["Website Revamp", "Architecture", "Industrial", "Responsive Design"],
+    content: [
+      "SSI Metal engaged me to revamp its corporate website for a Philippine architectural metal fabrication, manufacturing, and installation company. The goal was to replace an outdated online presence with an experience that feels contemporary, credible, and fitting for the quality of its work.",
+      "I restructured the website around the information prospective construction and architectural clients need most: capabilities, selected projects, plant equipment, company context, and a clear route to start a conversation. The resulting content architecture makes a broad technical offering easier to understand and explore.",
+      "The visual direction is restrained and architectural: material-led photography, strong editorial type, a measured palette, and structured layouts that give the site a modern, elegant feel while keeping the path to an enquiry clear across devices.",
+    ],
+    problem:
+      "SSI Metal's previous website no longer reflected the quality and breadth of its architectural fabrication work, making its offering harder for prospective clients to understand and evaluate.",
+    solution:
+      "I redesigned the digital experience as a clear, responsive platform that connects capabilities, project records, plant operations, and contact pathways in one refined client journey.",
+    highlights: [
+      "Transformed an outdated client website into a modern, architecture-led digital presence",
+      "Reorganized capabilities, project work, plant equipment, and company context into clearer journeys",
+      "Created a refined, quote-led responsive experience for construction and architectural clients",
+    ],
+    screenshots: [
+      {
+        src: "/images/projects/ssi-metal/website-preview.png",
+        alt: "SSI Metal homepage showing its architectural hero, structured navigation, and quote-focused calls to action",
+      },
+      {
+        src: "/images/projects/ssi-metal/capabilities-page.png",
+        alt: "SSI Metal capabilities page showing the editorial layout and structured service navigation",
+      },
+      {
+        src: "/images/projects/ssi-metal/projects-page.png",
+        alt: "SSI Metal project archive showing the architecture-led record of completed work",
+      },
+    ],
+    tech: ["Next.js", "Responsive Design", "Content Architecture", "Project Archive"],
+  },
   {
     id: 11,
     type: "project",

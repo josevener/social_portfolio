@@ -28,11 +28,12 @@ export default function ExperienceTimeline({ experiences }: Props) {
             {/* Content */}
             <div className="space-y-2">
               {/* Title + Date */}
-              <div className="flex justify-between gap-4">
+              {/* Dates stack on narrow screens so long periods never push the timeline past the viewport. */}
+              <div className="flex flex-col gap-1 sm:flex-row sm:justify-between sm:gap-4">
                 <h3 className="font-medium leading-tight">
                   {exp.title}
                 </h3>
-                <span className="whitespace-nowrap text-xs font-semibold text-foreground">
+                <span className="text-xs font-semibold text-foreground sm:whitespace-nowrap">
                   {formatExperiencePeriod(exp, currentMonth)}
                 </span>
               </div>

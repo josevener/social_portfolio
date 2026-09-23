@@ -8,7 +8,11 @@ import {
   DialogTrigger,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Maximize2 } from "lucide-react";
+import {
+  getNextGalleryIndex,
+  getPreviousGalleryIndex,
+} from "@/lib/gallery-navigation.mjs";
+import { ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 
 type Screenshot = {
   src: string;
@@ -20,11 +24,25 @@ type Props = {
 };
 
 export default function ProjectScreenshots({ screenshots }: Props) {
-  const [selectedImage, setSelectedImage] = useState<Screenshot | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   if (!screenshots || screenshots.length === 0) return null;
 
   const [hero, ...rest] = screenshots;
+  const selectedImage = screenshots[selectedIndex];
+  const hasMultipleImages = screenshots.length > 1;
+
+  // Wrap around the gallery so visitors can keep comparing screens without reaching a dead end.
+  const showPreviousImage = () => {
+    setSelectedIndex(
+      (currentIndex) =>
+        getPreviousGalleryIndex(currentIndex, screenshots.length)
+    );
+  };
+
+  const showNextImage = () => {
+    setSelectedIndex((currentIndex) => getNextGalleryIndex(currentIndex, screenshots.length));
+  };
 
   return (
     <section className="space-y-6">
@@ -38,8 +56,12 @@ export default function ProjectScreenshots({ screenshots }: Props) {
       <Dialog>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {/* Hero image */}
-          <DialogTrigger asChild onClick={() => setSelectedImage(hero)}>
-            <div className="sm:col-span-2 relative aspect-video rounded-2xl overflow-hidden border bg-muted glass-card group cursor-zoom-in">
+          <DialogTrigger asChild onClick={() => setSelectedIndex(0)}>
+            <button
+              type="button"
+              className="group relative aspect-video w-full cursor-zoom-in overflow-hidden rounded-2xl border bg-muted text-left glass-card sm:col-span-2"
+              aria-label={`Preview ${hero.alt}`}
+            >
               <Image
                 src={hero.src}
                 alt={hero.alt}
@@ -51,14 +73,20 @@ export default function ProjectScreenshots({ screenshots }: Props) {
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                 <Maximize2 className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8" />
               </div>
-            </div>
+            </button>
           </DialogTrigger>
 
           {/* Remaining screenshots */}
           {rest.map((shot, index) => (
-            <DialogTrigger asChild key={index} onClick={() => setSelectedImage(shot)}>
-              <div
-                className="relative aspect-video rounded-2xl overflow-hidden border bg-muted glass-card group cursor-zoom-in"
+            <DialogTrigger
+              asChild
+              key={shot.src}
+              onClick={() => setSelectedIndex(index + 1)}
+            >
+              <button
+                type="button"
+                className="group relative aspect-video w-full cursor-zoom-in overflow-hidden rounded-2xl border bg-muted text-left glass-card"
+                aria-label={`Preview ${shot.alt}`}
               >
                 <Image
                   src={shot.src}
@@ -70,20 +98,88 @@ export default function ProjectScreenshots({ screenshots }: Props) {
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                   <Maximize2 className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-6 w-6" />
                 </div>
-              </div>
+              </button>
             </DialogTrigger>
           ))}
         </div>
 
-        <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 border-none bg-transparent shadow-none">
+        <DialogContent
+          className="max-w-[calc(100vw-2rem)] gap-3 border-none bg-transparent p-0 shadow-none sm:max-w-4xl [&>button]:bg-black/60 [&>button]:text-white [&>button]:opacity-100"
+          onKeyDown={(event) => {
+            if (hasMultipleImages && event.key === "ArrowLeft") {
+              showPreviousImage();
+            }
+
+            if (hasMultipleImages && event.key === "ArrowRight") {
+              showNextImage();
+            }
+          }}
+        >
           <DialogTitle className="sr-only">Screenshot Preview</DialogTitle>
-          {selectedImage && (
-            <div className="relative w-full h-full flex items-center justify-center">
-              <img
-                src={selectedImage.src}
-                alt={selectedImage.alt}
-                className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-300"
-              />
+          <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-black/90">
+            <Image
+              src={selectedImage.src}
+              alt={selectedImage.alt}
+              fill
+              className="object-contain animate-in fade-in duration-200"
+              sizes="(min-width: 1024px) 1120px, 96vw"
+              priority
+            />
+
+            {hasMultipleImages && (
+              <>
+                <button
+                  type="button"
+                  onClick={showPreviousImage}
+                  className="absolute left-3 top-1/2 grid size-11 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-background/90 text-foreground shadow-lg transition hover:bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                  aria-label="Show previous image"
+                >
+                  <ChevronLeft className="size-5" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  onClick={showNextImage}
+                  className="absolute right-3 top-1/2 grid size-11 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-background/90 text-foreground shadow-lg transition hover:bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                  aria-label="Show next image"
+                >
+                  <ChevronRight className="size-5" aria-hidden="true" />
+                </button>
+              </>
+            )}
+
+            <p className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-black/65 px-3 py-1 text-xs font-medium text-white" aria-live="polite">
+              {selectedIndex + 1} of {screenshots.length}
+            </p>
+          </div>
+
+          {hasMultipleImages && (
+            <div className="flex justify-center gap-2 overflow-x-auto pb-1" aria-label="Choose a gallery image">
+              {screenshots.map((screenshot, index) => {
+                const isSelected = index === selectedIndex;
+
+                return (
+                  <button
+                    key={screenshot.src}
+                    type="button"
+                    onClick={() => setSelectedIndex(index)}
+                    className={`relative h-14 w-24 shrink-0 cursor-pointer overflow-hidden rounded-md border-2 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 sm:h-16 sm:w-28 ${
+                      isSelected
+                        ? "border-primary opacity-100"
+                        : "border-transparent opacity-60 hover:opacity-100"
+                    }`}
+                    aria-label={`Show image ${index + 1}: ${screenshot.alt}`}
+                    aria-current={isSelected ? "true" : undefined}
+                  >
+                    <Image
+                      src={screenshot.src}
+                      alt=""
+                      fill
+                      className="object-cover"
+                      sizes="112px"
+                    />
+                  </button>
+                );
+              })}
             </div>
           )}
         </DialogContent>
